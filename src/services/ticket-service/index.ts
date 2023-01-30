@@ -9,7 +9,7 @@ async function getTypesTicket() {
 async function getTickets(userId: number) {
   const list = await ticketRepository.getTickt(userId);
 
-  return list;
+  return list[0].Enrollment[0].Ticket[0];
 }
 
 const ticketServices = {
