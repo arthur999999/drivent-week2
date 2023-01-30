@@ -32,6 +32,12 @@ async function getAddressFromCEP(cep: string): Promise<AddressEnrollment> {
   return address;
 }
 
+async function findEnrollmnetUser(userId: number) {
+  const resp = await enrollmentRepository.findWithAddressByUserId(userId);
+
+  return resp;
+}
+
 async function getOneWithAddressByUserId(userId: number): Promise<GetOneWithAddressByUserIdResult> {
   const enrollmentWithAddress = await enrollmentRepository.findWithAddressByUserId(userId);
 
@@ -84,7 +90,8 @@ export type CreateOrUpdateEnrollmentWithAddress = CreateEnrollmentParams & {
 const enrollmentsService = {
   getOneWithAddressByUserId,
   createOrUpdateEnrollmentWithAddress,
-  getAddressFromCEP
+  getAddressFromCEP,
+  findEnrollmnetUser
 };
 
 export default enrollmentsService;
